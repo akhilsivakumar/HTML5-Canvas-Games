@@ -1,0 +1,39 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Canvas Games</title>
+</head>
+<body>
+    <canvas id="game-canvas" width="400" height="400"></canvas>
+    <script src="game.js"></script>
+</body>
+</html>
+
+/* game.js */
+const canvas = document.getElementById('game-canvas');
+const ctx = canvas.getContext('2d');
+
+let x = 100;
+let y = 100;
+let speedX = 2;
+let speedY = 2;
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'ed';
+    ctx.fillRect(x, y, 20, 20);
+    x += speedX;
+    y += speedY;
+    if (x + 20 > canvas.width || x < 0) {
+        speedX = -speedX;
+    }
+    if (y + 20 > canvas.height || y < 0) {
+        speedY = -speedY;
+    }
+    requestAnimationFrame(draw);
+}
+
+draw();
